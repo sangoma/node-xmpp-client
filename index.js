@@ -136,7 +136,7 @@ Client.prototype.onStanza = function(stanza) {
     /* Actually, we shouldn't wait for <stream:features/> if
        this.streamAttrs.version is missing, but who uses pre-XMPP-1.0
        these days anyway? */
-    if ((this.state !== STATE_ONLINE) && stanza.is('features', Connection.NS_STREAM)) {
+    if ((this.state !== STATE_ONLINE) && stanza.is('features')) {
         this.streamFeatures = stanza
         this.useFeatures()
     } else if (this.state === STATE_PREAUTH) {
