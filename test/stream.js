@@ -16,7 +16,7 @@ describe('Authentication', function() {
         server.listen(C2S_PORT, 'localhost')
     }
 
-    it.ignore('Sends opening <stream/>', function(done) {
+    it.skip('Sends opening <stream/>', function(done) {
         var options = {
             jid: 'test@localhost',
             password: 'test',
