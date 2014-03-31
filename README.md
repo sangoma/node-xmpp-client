@@ -6,6 +6,10 @@ Now usable in browsers too thanks to [Browserify](https://github.com/substack/no
 
 [![build status](https://secure.travis-ci.org/node-xmpp/node-xmpp-client.png)](http://travis-ci.org/node-xmpp/node-xmpp-client)
 
+## Manual
+
+See http://node-xmpp.github.io/doc/nodexmppclient.html for instructions on how to use `node-xmpp-client`.
+
 ## Installation
 
 __Note:__ We now only support nodejs versions 0.8.0 and greater.
@@ -79,32 +83,3 @@ this.client.connection.socket.setKeepAlive(true, 10000)
 ```
 
 Where `this.client` is the result of `new require('node-xmpp-client')()`.
-
-# Documentation
-
-(Builing up documentation slowly)
-
-## C2S Client to Server 
-
-```
-var Client = require('node-xmpp-client')
-
-var client = new Client({
-    jid: 'user@example.com',
-    password: 'password'
-})
-
-client.on('online', function() {
-    console.log('online')
-})
-
-client.on('stanza'), function(stanza) {
-    console.log('Incoming stanza: ', stanza.toString())
-})
-```
-
-### Closing a connection
-
-```
-client.end()
-```
