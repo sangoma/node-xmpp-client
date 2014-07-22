@@ -4,11 +4,14 @@ var exec = require('child_process').exec
 
 var startServer = function(done, options) {
     if (!options) options = {}
-    var pre = ''
-    pre += 'sudo cp test/resources/' +
+    
+    var pre = []
+    pre.push('sudo cp test/resources/' +
         (options.config || 'prosody.cfg.lua') +
-        ' /etc/prosody/prosody.cfg.lua &&'
-    exec(pre + ' sudo service prosody start', function() {
+        ' /etc/prosody/prosody.cfg.lua')
+    pre.push('sudo service prosody start')
+    
+    exec(pre.join(' && '), function() {
         setTimeout(function() {
             done()
         }, 1000)
