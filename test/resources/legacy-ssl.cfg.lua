@@ -22,7 +22,8 @@ daemonize = true;
 consider_websocket_secure = true;
 consider_bosh_secure = true;
 pidfile = "/var/run/prosody/prosody.pid";
-legacy_ssl_interfaces 5223
+legacy_ssl_interfaces = 127.0.0.1
+legacy_ssl_ports = 5223
 c2s_require_encryption = false
 
 authentication = "internal_plain"
