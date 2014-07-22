@@ -4,7 +4,7 @@ var exec = require('child_process').exec
 
 var startServer = function(done, options) {
     var pre = ''
-    if (options.config) {
+    if (options && options.config) {
         pre += 'sudo cp test/resources/' + options.config + ' /etc/prosody/prosody.cfg.lua &&'
     }
     exec(pre + ' sudo service prosody start', function() {
