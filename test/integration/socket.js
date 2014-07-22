@@ -188,4 +188,21 @@ describe('Socket connections', function() {
         })
     })
     
+    it('Connects to legacy SSL', function(done) {
+        client = new Client({
+            jid: jid + '/' + resource,
+            password: password,
+            host: 'localhost',
+            legacySSL: true
+        })
+        client.on('online', function(data) {
+            var bareJid = data.jid.local + '@' + data.jid.domain
+            bareJid.should.equal(jid)
+            bareJid = data.jid.user + '@' + data.jid.domain
+            bareJid.should.equal(jid)
+            data.jid.resource.should.equal(resource)
+            done()
+        })
+    })
+    
 })
