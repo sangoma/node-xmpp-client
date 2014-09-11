@@ -11,9 +11,14 @@ describe('Delegated authentication', function() {
 
     describe('Detect SASL mechanisms', function() {
 
-        it('Should return true always', function() {
-            var options = {}
+        it('Should return true if there is a JID', function() {
+            var options = { jid: 'user@example.com' }
             mech.match(options).should.equal(true)
+        })
+        
+        it('Should return false if there\'s no JID', function() {
+            var options = {}
+            mech.match(options).should.equal(false)
         })
 
         it('Should return an empty challenge', function() {
