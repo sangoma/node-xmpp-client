@@ -22,7 +22,7 @@ describe('Delegated authentication', function() {
         })
 
         it('Should return an an auth response', function() {
-            mech.jid = 'user@example.com'
+            mech.authzid = 'user@example.com'
             mech.auth().should.equal('jid=user%40example.com')
         })
         
