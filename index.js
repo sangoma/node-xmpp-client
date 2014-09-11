@@ -270,6 +270,7 @@ Client.prototype._handlePreAuthState = function() {
         this.preferredSaslMechanism,
         this.availableSaslMechanisms
     )
+
     if (this.mech) {
         this.mech.authzid = this.jid.bare().toString()
         this.mech.authcid = this.jid.user
