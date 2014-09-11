@@ -21,9 +21,13 @@ describe('Delegated authentication', function() {
             mech.match(options).should.equal(false)
         })
 
-        it('Should return an empty challenge', function() {
+        it('Should return an an auth response', function() {
             mech.jid = 'user@example.com'
-            mech.challenge().should.equal('jid=user%40example.com')
+            mech.auth().should.equal('jid=user%40example.com')
+        })
+        
+        it('Should return an empty challenge', function() {
+            mech.challenge().should.equal('')
         })
 
     })
