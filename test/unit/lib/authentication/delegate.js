@@ -1,7 +1,6 @@
 'use strict';
 
 var Delegate = require('../../../../lib/authentication/delegate')
-  , JID = require('node-xmpp-core').JID
 
 var mech = new Delegate()
 
