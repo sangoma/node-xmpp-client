@@ -11,7 +11,6 @@ var Session = require('./lib/session')
   , XOAuth2 = require('./lib/authentication/xoauth2')
   , XFacebookPlatform = require('./lib/authentication/xfacebook')
   , External = require('./lib/authentication/external')
-  , exec = require('child_process').exec
   , util = require('util')
   , debug = require('debug')('xmpp:client')
 
