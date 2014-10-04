@@ -261,9 +261,29 @@ describe('BOSH connections', function() {
                     prebind: function(error, data) {
                         if (error) return done(error)
                         data.rid.should.exist
-                        data.rid.length.should.be.above(5)
+                        data.rid.toString().length.should.be.above(5)
                         data.sid.should.exist
-                        data.sid.length.should.be.above(5)
+                        data.sid.toString().length.should.be.above(5)
+                        done()
+                    }
+                }
+            })
+
+        })
+      
+        it('Returns error if prebind fails', function(done) {
+            /* jshint -W031 */
+            new Client({
+                jid: jid,
+                password: 'not the ' + password,
+                preferred: 'PLAIN',
+                wait: '60',
+                bosh: {
+                    url: 'http://localhost:5280/http-bind',
+                    prebind: function(error) {
+                        error.should.equal(
+                            'XMPP authentication failure'
+                        )
                         done()
                     }
                 }

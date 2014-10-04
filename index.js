@@ -143,65 +143,54 @@ Client.prototype.connect = function() {
     if (this.options.bosh && this.options.bosh.prebind) {
         debug('load bosh prebind')
         var cb = this.options.bosh.prebind
-        delete this.options.bosh.prebind
-        var cmd = 'node ' + __dirname +
-            '/lib/prebind.js '
-        delete this.options.bosh.prebind
-        cmd += encodeURI(JSON.stringify(this.options))
-        exec(
-            cmd,
-            function (error, stdout, stderr) {
-                if (error || stderr) {
-                    cb(error || stderr)
-                } else {
-                    var r = stdout.match(/rid:+[ 0-9]*/i)
-                    r = (r[0].split(':'))[1].trim()
-                    var s = stdout.match(/sid:+[ a-z+'"-_A-Z+0-9]*/i)
-                    s = (s[0].split(':'))[1]
-                        .replace('\'','')
-                        .replace('\'','')
-                        .trim()
-                    cb(null, { rid: r, sid: s })
-                }
-            }
-        )
-    } else {
-        this.options.xmlns = NS_CLIENT
-        /* jshint camelcase: false */
+        var self = this
+        this.on('online', function(data) {
+            cb(null, {
+                rid: self.connection.rid,
+                sid: self.connection.sid
+            })
+            self.end()
+        })
+        this.on('error', function(error) {
+            cb(error)
+            self.end()
+        })
+    }
+    this.options.xmlns = NS_CLIENT
+    /* jshint camelcase: false */
+    delete this.did_bind
+    delete this.did_session
+
+    this.state = STATE_PREAUTH
+    this.on('end', function() {
+        this.state = STATE_PREAUTH
         delete this.did_bind
         delete this.did_session
+    })
 
+    Session.call(this, this.options)
+    this.options.jid = this.jid
+
+    this.connection.on('disconnect', function(error) {
         this.state = STATE_PREAUTH
-        this.on('end', function() {
-            this.state = STATE_PREAUTH
-            delete this.did_bind
-            delete this.did_session
-        })
-
-        Session.call(this, this.options)
-        this.options.jid = this.jid
-
-        this.connection.on('disconnect', function(error) {
-            this.state = STATE_PREAUTH
-            if (!this.connection.reconnect) {
-                if (error) this.emit('error', error)
-                this.emit('offline')
-            }
-            delete this.did_bind
-            delete this.did_session
-        }.bind(this))
-
-        // If server and client have multiple possible auth mechanisms
-        // we try to select the preferred one
-        if (this.options.preferred) {
-            this.preferredSaslMechanism = this.options.preferred
-        } else {
-            this.preferredSaslMechanism = 'DIGEST-MD5'
+        if (!this.connection.reconnect) {
+            if (error) this.emit('error', error)
+            this.emit('offline')
         }
+        delete this.did_bind
+        delete this.did_session
+    }.bind(this))
 
-        var mechs = sasl.detectMechanisms(this.options, this.availableSaslMechanisms)
-        this.availableSaslMechanisms = mechs
+    // If server and client have multiple possible auth mechanisms
+    // we try to select the preferred one
+    if (this.options.preferred) {
+        this.preferredSaslMechanism = this.options.preferred
+    } else {
+        this.preferredSaslMechanism = 'DIGEST-MD5'
     }
+
+    var mechs = sasl.detectMechanisms(this.options, this.availableSaslMechanisms)
+    this.availableSaslMechanisms = mechs
 }
 
 Client.prototype.onStanza = function(stanza) {
