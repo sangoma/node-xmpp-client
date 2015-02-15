@@ -16,7 +16,7 @@
  * Generate your access token
  */
 var Client = require('../index')
-  , ltx  = require('ltx')
+  , ltx  = Client.ltx
 
 var facebookId = '<< facebook user ID >>'
 var appId = '<< appliction ID >> '

@@ -5,7 +5,7 @@
  **/
 var Client = require('../index')
   , argv = process.argv
-  , ltx = require('ltx')
+  , ltx = Client.ltx
 
 if (3 !== argv.length) {
     console.error(
