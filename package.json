@@ -48,7 +48,7 @@
     "grunt-mocha-istanbul": "^2.1.0",
     "grunt-mocha-phantomjs": "^2.0.0",
     "node-xmpp-server": "^1.0.2",
-    "should": "~2.1.1"
+    "should": "7.1.0"
   },
   "browser": {
     "request": "browser-request",
