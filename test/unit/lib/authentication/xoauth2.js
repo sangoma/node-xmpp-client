@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 var XOAuth2 = require('../../../../lib/authentication/xoauth2')
 

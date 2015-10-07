@@ -4,6 +4,7 @@
   "description": "XMPP client written in nodejs",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "./node_modules/.bin/grunt test",
     "browserify": "./node_modules/.bin/grunt browserify",
     "integration-test": "./node_modules/.bin/grunt integration-test",
@@ -47,7 +48,7 @@
     "grunt-mocha-cli": "~1.3.0",
     "grunt-mocha-istanbul": "^2.1.0",
     "grunt-mocha-phantomjs": "^2.0.0",
-    "node-xmpp-server": "^1.0.2",
+    "node-xmpp-server": "^2.0.0",
     "should": "~2.1.1"
   },
   "browser": {

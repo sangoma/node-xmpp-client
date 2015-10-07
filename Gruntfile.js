@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 var helper = require('./test/helper')
 
@@ -81,7 +81,7 @@ module.exports = function(grunt) {
             }
         }
     })
-    
+
     grunt.event.on('coverage', function(lcov, done) {
         require('coveralls').handleInput(lcov, function(error) {
             if (error) {
@@ -111,7 +111,7 @@ module.exports = function(grunt) {
     grunt.registerTask('browser-test', ['browserify', 'connect', 'prosody-start', 'mocha_phantomjs', 'prosody-stop'])
     grunt.registerTask('full-test', ['test', 'integration-test', 'browser-test'])
     grunt.registerTask('dev', ['browserify', 'connect', 'watch'])
-    
+
     grunt.registerTask('prosody-start', 'Start Prosody', function() {
         helper.startServer(this.async())
     })

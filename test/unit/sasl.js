@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 var nodexmppserver = require('node-xmpp-server'),
     C2SServer = nodexmppserver.C2SServer

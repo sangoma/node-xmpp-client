@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 
 /*
@@ -20,11 +20,11 @@ if (argv.length < 5) {
 
 var component = argv[4]
   , client = new Client({
-    jid: argv[2],
-    password: argv[3],
-    host:'localhost',
-    reconnect: true
-})
+        jid: argv[2],
+        password: argv[3],
+        host:'localhost',
+        reconnect: true
+    })
 
 var x = 0, old = x, average = 0
 

@@ -1,3 +1,5 @@
+'use strict'
+
 var Connection = require('node-xmpp-core').Connection
   , Client = require('./index')
   , JID = require('node-xmpp-core').JID
