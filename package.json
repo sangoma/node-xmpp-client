@@ -33,7 +33,7 @@
     "request": "^2.65.0"
   },
   "devDependencies": {
-    "brfs": "^1.4.1",
+    "brfs": "^1.4.3",
     "browserify": "^3.19.1",
     "coveralls": "^2.11.4",
     "grunt": "^0.4.5",
