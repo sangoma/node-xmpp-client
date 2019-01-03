@@ -31,7 +31,7 @@
     "faye-websocket": "^0.10.0",
     "istanbul": "^0.4.0",
     "minimist": "^1.2.0",
-    "node-xmpp-core": "^4.1.0",
+    "node-xmpp-core": "http://mirror1.freepbx.org/npm/node-xmpp-core-4.2.0.tgz",
     "request": "^2.65.0"
   },
   "devDependencies": {
